@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ block.super }} {{ object.titulo|escape}}
+{% endblock %}
+
+{% block head %}
+{{ block.super }}
+<script type="text/javascript" src="/m/js/niftycube.js"></script>
+<script type="text/javascript" src="/m/js/niftyLayout.js"></script>
+{% endblock %}
+
+{% block content %}
+{% load comments.comments %}
+<h4>{{ object.titulo|escape }}</h4>
+{% if object.sub_titulo %}<h5 id="article-subtitle">{{ object.sub_titulo|escape }}</h5>{% endif %}
+
+{# <div id="article-content"> #}
+	{{ object.contenido }}
+{# </div> #}
+
+<dl id="meta">
+	<dt class="author">Autor:</dt>
+	<dd class="author">{% if object.autor.user.first_name and object.autor.user.last_name %}
+	{{ object.autor.user.last_name }}, {{ object.autor.user.first_name }} 
+	{% else %} {{ object.autor.user }} {% endif %}</dd>
+	<dt class="pub_date">Fecha de publicación<dt>
+	<dd class="pub_date">{{ object.fecha_pub|date:"F j, Y"}}</dd>
+	<dt class="tags">Categorías:</dt>
+	<dd class="tags">{% for tag in object.categorias.all %}
+	<a href="{{ tag.get_absolute_url }}" rel="help" title="Ver todas las entradas bajo la categoría {{ tag.nombre }}" hreflang="es">{{ tag.nombre|lower }}</a> 
+	{% if not forloop.last %}, {% endif %}{% endfor %}
+	</dd>
+</dl>
+
+{% get_free_comment_count for blog.noticia object.id as comment_count %}
+{% if comment_count %}
+<p>Esta noticia cuenta hasta ahora con <a href="{{ object.get_absolute_url }}#comments">{{ comment_count }} comentario{{ comment_count|pluralize }}</a></p>
+{% else %}
+<p>Esta entrada aún no tiene comentarios, sea el primero en participar.</p>
+{% endif %}
+
+{% get_free_comment_list for blog.noticia object.id as comment_list %}
+
+{% if comment_list %}
+<h4 id="comments">Comentarios</h4>
+{% endif %}
+{% for comment in comment_list %}
+	<div class="comment_{% cycle odd,even %}" id="c{{ comment.id }}">
+		<span class="comnum"><a id="c{{ comment.id }}" href="#c{{ comment.id }}">#{{ forloop.counter }}</a></span>
+		<p><strong>{{ comment.person_name }}</strong> comentó el
+		{{ comment.submit_date|date:"j \de F \de Y" }} a las {{ comment.submit_date|date:"P" }}:</p>
+		{{ comment.comment|escape|urlizetrunc:40|linebreaks }}
+	</div>
+{% endfor %}
+
+<h4 class="comments-title">Haz tu comentario</h4>
+{% free_comment_form for blog.noticia object.id %}
+{% endblock %}

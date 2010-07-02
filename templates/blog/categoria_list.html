@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ block.super }} Categorías
+{% endblock %}
+
+{% block content %}
+<h4>Categorías</h4>
+<p>Vea todas las categorías.</p>
+<p>
+	{% for tag in object_list %}
+	<a href="{{ tag.get_absolute_url }}" title="Vea todas las entradas de la categoría: {{ tag.nombre|escape|lower }}" rel="" hreflang="es">{{ tag.nombre|escape|lower }}</a> {% if not forloop.last %}, {% endif %}
+	{% endfor %}
+</p>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'solicitudes/form_base.html' %}
+{% block legend %} Datos de solicitud - Rompimiento de
+Prelaci&oacute;n {% endblock %}
+{% block action %} /solicitudes/prelacion/generar/ {% endblock %}
+
+{% block form %}
+<tr> <td align = 'right'> Semestre de rompimiento </td>
+<td> 
+<select name = 'semestre'>
+{% for s in semestres %}
+<option value='{{ s.codigo }}'> {{ s.codigo }} </option>
+{% endfor %}
+</select>
+</td> </tr>
+
+<tr> <td align = 'right'> Materia base </td>
+<td>
+<select name = 'materia1'>
+{% for m in materias %}
+<option value='{{ m.nombre }}'> {{ m.nombre }} </option>
+{% endfor %}
+</select>
+</td> </tr>
+
+<tr> <td align = 'right'> Materia solicitada </td>
+<td>
+<select name = 'materia2'>
+{% for m in materias %}
+<option value='{{ m.nombre }}'> {{ m.nombre }} </option>
+{% endfor %}
+</select>
+</td> </tr>
+{% endblock %}
+
+{% block formulario %}prelacion{% endblock %}

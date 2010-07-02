@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %} {{ block.super }} Grupos de Investigación {% endblock %}
+
+{% block content %}
+<h4>Grupos de Investigación</h4>
+{% if object_list %}
+	<table class="horarios" cellspacing="0" summary="Listado de Grupos de Investigación">
+	<thead>
+		<tr>
+			<th>Grupo de Investigación</th>
+			<th>Código</th>
+			<th>Responsable</th>
+			<th>Teléfono</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for grupo in object_list %}
+		<tr class="{% cycle odd,even %}">
+		<td><a href="../../{{ grupo.id }}" title="Detalles grupo investigacion" hreflang="es">{{ grupo.nombre|title|escape }}</a></td>
+				<td><a href="../../{{ grupo.nombre|slugify }}" title="Detalles grupo investigacion" hreflang="es">{{ grupo.codigo }}</a></td>
+			<td><a href="../../../miembros/{{ grupo.responsable.user.username }}" title="Detalles grupo investigacion" hreflang="es">{{ grupo.responsable.user.last_name|title|escape}}, {{ grupo.responsable.user.first_name }}</a></td>
+			<td>{{ departamento.telef }}</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+	<tfoot>
+	<tr><td>Fuente: EISULA</td></tr>
+	</tfoot>
+	</table>
+{% else %}
+	<p>Aún no se han agregado grupos de investigación</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'solicitudes/formatos/base.tex' %}
+
+{% block firma%}
+Br. {{ nombre_estudiante }} \\ C.I. {{ cedula_estudiante }}
+{% endblock %}
+{% block destinatarios%}
+Profesor{{ letra }} {{ nombre_director }}, Director{{ letra }}. \\ 
+Miembros del Consejo de Escuela de Sistemas.
+{% endblock %}
+{% block apertura %}
+Estimados profesores.
+{% endblock%}
+{% block contenido %}
+Me permito dirigirme a ustedes con el fin de solicitarles el 
+\textbf{rompimiento de prelación} entre las asignaturas
+{{ materia1 }} y {{ materia2 }}, para el semestre
+{{ semestre }}.
+{% endblock %}
+Sin otro partícular al que hacer referencia, se despide de
+ustedes,
+{% block cierre %}
+Atentamente,
+{% endblock %}

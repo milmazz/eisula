@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ block.super }} Categoría &mdash; {{ object.nombre }}
+{% endblock %}
+
+
+{% block content %}
+<h4>Categoría: {{ object.nombre|escape }}</h4>
+{% if object.descripcion %} <p>{{ object.descripcion }}</p> {% endif %}
+<p>Vea todos los artículos bajo esta categoría.</p>
+<ul>
+{% for post in object.noticia_set.all %}
+<li><a href="{{ post.get_absolute_url }}" title="Vea la entrada: {{ post.titulo|escape }}" rel="" hreflang="es">{{ post.titulo|escape }}</a></li>
+{% endfor %}
+</ul>
+{% endblock %}

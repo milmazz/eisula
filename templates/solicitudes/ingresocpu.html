@@ -1,0 +1,16 @@
+{% extends 'solicitudes/form_base.html' %}
+{% block legend %} Datos de solicitud - Ingreso de CPU a instalaciones
+de EISULA{% endblock %}
+{% block action %} /solicitudes/ingresocpu/generar/ {% endblock %}
+
+{% block form %}
+<tr> <td align = 'right'> Serial </td>
+<td> <input type = "text" size = "20" name = "serial"/> </td> </tr>
+<tr> <td align = 'right'> Otras características </td>
+<td> <input type = "text" size = "60" name = "otras"/> </td> </tr>
+<tr> <td align = 'center'> 
+<tr> <td align = 'rigth'> Fecha de ingreso de CPU </td>
+<td>
+{% include 'solicitudes/javascript/fecha.js' %}
+</td> </tr>
+{% endblock %}

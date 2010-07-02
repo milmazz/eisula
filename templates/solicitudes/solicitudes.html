@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ block.super }}Solicitudes a Consejo de EISULA y autorizaciones
+{% endblock %}
+		
+{% block content %}
+<h4>Horario de atenci&oacute;n</h4>
+
+<p> Los oficios de solicitud ser&aacute;n recibidos,
+sin excepci&oacute;n, de acuerdo al siguiente horario: </p>
+
+<dl>
+<dt>Lunes</dt><dd>04:00 pm - 05:30 pm</dd>
+<dt>Martes</dt><dd>11:00 am - 11:45 am</dd>
+<dt>Mi&eacute;rcoles</dt><dd>03:00 pm - 05:00 pm</dd>
+<dt>Jueves</dt><dd>08:00 am - 11:00 am</dd>
+<dt>Viernes</dt><dd>03:00 pm - 04:00 pm</dd>
+</dl>
+
+<h4>Requisitos para tramitar ante el consejo de EISULA </h4>
+<ul>
+<li> Flujograma de notas.</li>
+<li> Constancia de notas de toda la carrera, inclu&iacute;do &uacute;ltimo
+semestre cursado. </li>
+<li> Oficio de solicitud. </li>
+</ul>
+
+{% if reglamentos %}
+<h4>Reglamentos de solicitud </h4>
+<ul>
+{% for r in reglamentos %}
+<li><a href = "/solicitudes/reglamentos/{{ r.id }}/">
+{{r.nombre}} </a> </li> <br/>
+{% endfor %}
+</ul>
+{% endif %}
+
+<h4>Formatos de solicitud</h4>
+<dl>
+<dt>Consejo de Escuela</dt>
+<dd><a href = "/solicitudes/prelacion/#forma">
+Rompimiento de Prelaci&oacute;n </a></dd>
+<dd><a href = "/solicitudes/exceso/#forma">
+Exceso de Unidades Cr&eacute;dito </a> </dd>
+<dd><a href = "/solicitudes/colision/#forma">
+Colisi&oacute;n de Horarios </a> </dd>
+<dt>Consejo de Departamento</dt>
+<dd><a href = "/solicitudes/prorroga/#forma">
+Pr&oacute;rroga de Proyecto de Grado </dd>
+<dd><a href = "/solicitudes/regimen/#forma">
+R&eacute;gimen Especial </a> </dd>
+<dt>Autorizaciones</dt>
+<dd><a href = "/solicitudes/ingresocpu/#forma">
+Ingreso de CPU a instalaciones de EISULA </a> </dd>
+</dl>
+
+<div id="forma">
+{% ifequal f 'prelacion/'%}
+{% include 'solicitudes/prelacion.html'%}
+{% else %}
+{% ifequal f 'exceso/'%}
+{% include 'solicitudes/exceso.html'%}
+{% else %}
+{% ifequal f 'colision/'%}
+{% include 'solicitudes/colision.html'%}
+{% else %}
+{% ifequal f 'prorroga/'%}
+{% include 'solicitudes/prorroga.html'%}
+{% else %}
+{% ifequal f 'regimen/'%}
+{% include 'solicitudes/regimen.html'%}
+{% else %}
+{% ifequal f 'ingresocpu/'%}
+{% include 'solicitudes/ingresocpu.html'%}
+{% endifequal %}
+{% endifequal %}
+{% endifequal %}
+{% endifequal %}
+{% endifequal %}
+{% endifequal %}
+</div>
+{% endblock %}

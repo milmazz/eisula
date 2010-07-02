@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+{% block head %}
+<script language="JavaScript" type="text/JavaScript">
+semestres = new Array("1","2","3","4","5","6","7","8","9","10","--Seleccione--");
+		
+departamentos = new Array(
+	{% for dpto in fetch_dpto %}
+		"{{dpto.nombre}}",
+	{% endfor %}
+		"--Seleccione--");
+
+departamentos_id = new Array(
+	{% for dpto in fetch_dpto %}
+		"{{dpto.id}}",
+	{% endfor %}
+		"--Seleccione--");
+	
+function changeSel(){
+	var optionArray;
+	if(document.forms[0].filter[0].checked){
+		optionArray = semestres;
+		valArray = semestres;
+	}
+	else if(document.forms[0].filter[1].checked){
+		optionArray = departamentos;
+		valArray = departamentos_id;
+	}
+	for(var i=0; i<optionArray.length; i++){
+		var tochange = document.forms[0].filter_opt;
+		tochange.options.length = 0;
+		for(var j=0; j<optionArray.length; j++){
+			var opt = optionArray[j];
+			var val = valArray[j];
+			tochange.options[j] = new Option(opt,val);
+			if(opt=="--Seleccione--")
+				tochange.options[j].selected=true
+		}
+	}
+}
+
+
+function not_selected(){
+	if(document.forms[0].filter[2].checked){
+		document.forms[0].filter_opt.value="";
+		document.forms[0].filtro.value="all";
+		return true;
+	}
+	if(document.forms[0].filter_opt.value=="--Seleccione--"){
+		alert("Elija la opcion del filtro");
+		return false;
+	}
+	if(document.forms[0].filter[0].checked)
+		document.forms[0].filtro.value="semestre";
+	else
+		document.forms[0].filtro.value="departamento";
+	return true;
+}
+
+</script>
+{{block.super}}
+{% endblock %}
+{% block content %}
+
+<h4>Pensum de Estudios</h4>
+<form method="post" action="/pensum/#asignaturas">
+<table id="pensum">
+	<tr>
+		<td>
+			<input type="radio" name="filter" id="sem" value="sem" onClick="changeSel()">
+			<label for="sem">Filtrar por Semestre</label>
+		</td>
+		<td rowspan="3" id="combo-filtro">
+			<select name="filter_opt">
+			<option>Sin Filtros
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<input type="radio" name="filter" id="Departamento" value="dpto" onClick="changeSel()">
+			<label for="dpto">Filtrar por Departamento</label>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<input type="radio" name="filter" id="all" value="all" checked="checked">
+			<label for="all">Mostrar Todo</label>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<input type=checkbox value="check" name="pg" id="pg" {% if get_pg %}checked{% endif %}>
+			<label for="pg">Pensum Postgrado</label>
+		</td>
+	</tr>
+</table>
+<input type=hidden value="" name="filtro" id="filtro">
+<input type=submit value="Filtrar" onClick="return not_selected()" class="boton-envio">
+</form>
+
+<dl id="asignaturas">
+{% if fetch_asignaturas %}
+    {% for asignatura in fetch_asignaturas %}
+        	<dt><a href="/pensum/{{asignatura.id}}">{{asignatura.nombre}}</a></dt>
+        	<dd>Semestre {{asignatura.sem}}</dd>
+    {% endfor %}
+{% else %}
+<p>No hay Materias en el sistema.</p>
+{% endif %}
+</dl>
+
+{% endblock %}

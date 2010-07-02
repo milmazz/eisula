@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h4>{{pg.degree}}</h4>
+<dl>
+<dt>Ubicación</dt>
+<dd>{{pg.location}}</dd>
+<dt>Departamento</dt>
+<dd>{{pg.dpto.nombre}}</dd>
+</dl>
+
+{% endblock %}

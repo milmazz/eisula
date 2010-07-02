@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %} {{ block.super }} Departamentos {% endblock %}
+
+{% block content %}
+
+<h4>Departamentos</h4>
+{% if object_list %}
+	<table class="horarios" summary="Listas de Departamentos" cellspacing="0">
+	<thead>
+		<tr>
+			<th>Departamento</th><th>Jefe de
+			departamento</th><th>Teléfono</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for departamento in object_list %}
+		<tr class="{% cycle odd,even %}">
+			<td><a href="../../{{ departamento.id }}" title="Detalles departamento" hreflang="es">{{ departamento.nombre|title|escape}}</a></td>
+			<td><a href="../../../miembros/{{ departamento.jefe.user.username }}" title="Detalles departamento" hreflang="es">{{ departamento.jefe.user.last_name|title|escape}}, {{ departamento.jefe.user.first_name }}</a></td>
+			<td>{{ departamento.telef }}</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+	<tfoot>
+	<tr><td colspan="3">Fuente: EISULA</td></tr>
+	</tfoot>
+	</table>
+{% else %}
+	<p>Aún no se han agregado departamentos</p>
+{% endif %}
+{% endblock %}

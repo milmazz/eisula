@@ -1,0 +1,48 @@
+\documentclass [spanish, 12pt, oneside]{letter}
+
+\usepackage [utf8] {inputenc}
+\usepackage {babel}
+\usepackage{enumerate}
+\pagestyle{empty}
+
+\begin{document}
+
+\signature{
+\begin{tabular}{p{7cm}p{7cm}}
+Prof. Dulce Milagro Rivero Albarrán & Prof. Oscar Camacho \\
+Directora Escuela de Sistemas & Decano Facultad de Ingeniería
+\end{tabular}
+}
+
+\begin{letter}
+
+\begin{center} AUTORIZACION \end{center}
+
+Quien suscribe, Profesora Dulce Milagro Rivero Albarrán portadora
+de la C.I. V - 8003398, autoriza al (a la) Br. {{ nombre_estudiante }},
+portador(a) de la C.I. {{ cedula_estudiante }}, para que ingrese a la
+Escuela de Ingeniería de Sistemas un CPU cuyas características son
+las siguientes:
+\begin{enumerate}
+\item Serial: {{ serial }}.
+\item {{ otras }}.
+\end{enumerate}
+%{% ifnotequal numero_motivos 1 %}
+Los motivos de esta autorización se enumeran a continuación:
+\begin{enumerate}
+%{% for m in motivos %}
+\item {{ m }}.
+%{% endfor %}
+\end{enumerate}
+{% else %}
+El motivo de esta autorización es el siguiente: {{ motivos.0 }}.
+{% endifnotequal %}
+
+La presente autorización es válida para el día: {{ dia }} de
+{{ mes }} de {{ year }}.
+
+\closing{Sin más a que hacer referencia,}
+
+\end{letter}
+
+\end{document}

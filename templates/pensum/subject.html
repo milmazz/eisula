@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+	<h4>{{materia.nombre}}</h4>
+	
+	<dl>
+	<dt>Semestre</dt><dd>{{materia.sem}}</dd>
+	<dt>Departamento</dt><dd>{{mat_dpto.nombre}}</dd>
+	<dt>Codigo</dt><dd>{{materia.codigo}}</dd>
+	<dt>Unidades de Credito</dt><dd>{{materia.creditos}}</dd>
+	{% if materia.pg %}
+	<dt>Postgrado al que esta
+	inscrita</dt><dd>{{materia.pg.degree}}</dd>
+	{% endif %}
+	{% if fetch_prel %}
+	<dt>Prelaciones</dt>
+	{% endif %}
+	{% for prel in fetch_prel %}
+		<dd>{{prel.origen}}</dd>
+	{% endfor %}
+	</dl>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ block.super }} Horario de materias
+{% endblock %}
+
+{% block content %}
+<h4>Horarios de materias</h4>
+{% if clases_list %}
+<table summary="horarios de materias" cellspacing="0" class="horarios">
+	<thead>
+	  <tr>
+		<th>Periodo</th>
+		<th>Código</th>
+		<th>Nombre</th>
+		<th>Créditos</th>
+		<th>Sección</th>
+		<th>Horario</th>
+	</tr>
+        </thead>
+        <tbody>
+    {% for clase in clases_list|dictsort:"seccion.asignatura.codigo" %}
+        <tr class="{% cycle odd,even %}">
+	<td>{% ifchanged %}{{clase.seccion.asignatura.sem}}{% endifchanged %}</td>
+	<td>{% ifchanged %}{{clase.seccion.asignatura.codigo}}{% endifchanged %}</td>
+	<td>{% ifchanged %}{{clase.seccion.asignatura.nombre}}{% endifchanged %}</td>
+	<td>{{clase.seccion.asignatura.creditos}}</td>
+	<td>{{clase.seccion}}</td>
+	<td>{{clase.dia}} {{clase.horaIni}} {{clase.horaFin}}</td>
+	</tr>
+	{% endfor %}
+	</tbody>
+	<tfoot>
+		<tr>
+			<td colspan="6">Fuente: EISULA</td>
+		</tr>
+	</tfoot>
+	</table>
+{% else %}
+    <p>No hay horarios disponibles.</p>
+    {% endif %}
+    
+{% endblock %}

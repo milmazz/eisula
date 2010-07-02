@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ block.super }} Listado de preguntas frecuentes 
+{% endblock %}
+
+{% block content %}
+<h4>Preguntas Frecuentes</h4>
+<ul id="faq-list">
+	{% for faq in object_list %}
+	<li><a href="{{ faq.get_absolute_url }}" title="Vea la respuesta a la pregunta: {{ faq.question|escape }}" rel="" hreflang="es">{{ faq.question|escape }}</a></li> 
+	{% endfor %}
+</ul>
+{% endblock %}

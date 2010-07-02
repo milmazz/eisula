@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %} 
+	{{ block.super }} Detalle - {{ object.nombre }} 
+{% endblock %}
+
+
+{% block content %}
+<h4>{{ object.nombre|title|escape }}</h4>
+<dl>
+<dt>Jefe de departamento:</dt>
+<dd><a href="../../miembros/{{ object.jefe.user.username }}">{{ object.jefe.user.last_name|title|escape }}, {{ object.jefe.user.first_name|title|escape }}</a></dd>
+		<dt>Teléfono:</dt><dd>{{ object.telef }}</dd>
+		<dt>Dirección:</dt><dd>{{ object.direccion|capfirst|escape }}</dd>
+	{% if web %}
+		<dt>Web:</dt><dd>{{ object.web }}</dd>
+	{% endif %}
+		<dt>Descripción:</dt><dd>{{ object.descripcion }}</dd>
+	{% if object.miembros %}
+	<a href="../{{ object.id }}/miembros">Ver miembros</a>
+	{% endif %}
+{% endblock %}

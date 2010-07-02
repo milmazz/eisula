@@ -1,0 +1,35 @@
+/*Texto de tag <a> no subrayado y color gris*/
+a{
+color: rgb(150, 100, 150);
+font-weight: bold;
+letter-spacing: 0px;
+text-decoration: none;
+}
+
+p{
+color: rgb(150, 100, 150);
+font-weight: bold;
+letter-spacing: 0px;
+}
+
+h1{
+color: rgb(0, 0, 255);
+font-weight: bold;
+letter-spacing: 00px;
+}
+
+h3{
+color: rgb(100, 100, 200);
+font-weight: bold;
+letter-spacing: 5px;
+}
+
+h4{
+color: rgb(100, 100, 150);
+font-weight: bold;
+letter-spacing: 7px;
+}
+
+fieldset{
+background-color: rgb(225, 225, 255);
+}

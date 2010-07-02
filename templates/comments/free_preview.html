@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h4>Vista previa</h4>
+
+<form action="../postfree/" method="post">
+	{% if comment_form.has_errors %}
+	    <p><strong style="color: red;">Por favor corrija los
+		    siguientes errores.</strong></p>
+	{% else %}
+	    <div class="comment">
+	    {{ comment.comment|escape|urlizetrunc:"40"|linebreaks }}
+	    <p class="date small">Publicado por <strong>{{ comment.person_name }}</strong></p>
+	    </div>
+
+	    <p><input type="submit" name="post" value="Publicar comentario" /></p>
+
+	    <h4>Edite su comentario</h4>
+	{% endif %}
+
+	{% if comment_form.person_name.errors %}
+	    {{ comment_form.person_name.html_error_list }}
+	{% endif %}
+
+	<p><label for="id_person_name">Nombre:</label> {{ comment_form.person_name }}</p>
+
+	{% if comment_form.comment.errors %}
+		{{ comment_form.comment.html_error_list }}
+	{% endif %}
+
+	<p>
+		<label for="id_comment">Comentario:</label>
+		<br />
+		{{ comment_form.comment }}
+	</p>
+	
+	<input type="hidden" name="options" value="{{ options }}" />
+	<input type="hidden" name="target" value="{{ target }}" />
+	<input type="hidden" name="gonzo" value="{{ hash }}" />
+	
+	<p>
+		<input type="submit" name="preview" value="Vista previa de comentario revisado" />
+	</p>
+</form>
+{% endblock %}

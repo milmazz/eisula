@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ block.super }} Preguntas Frecuentes | {{ object.question|escape }} 
+{% endblock %}
+
+
+{% block content %}
+<h4>{{ object.question|escape }}</h4>
+<p>{{ object.answer }}</p>
+{% endblock %}

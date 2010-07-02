@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %} {{ block.super }} Publicaciones {% endblock %}
+
+{% block content %}
+
+<h4>Publicaciones</h4>
+{% if object_list %}
+	<table class="horarios" cellspacing="0" summary="Lista de publicaciones">
+	<thead>
+		<tr>
+			<th>Título</th>
+			<th>Año</th>
+			<th>Autores</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for publicacion in object_list %}
+		<tr class="{% cycle odd,even %}">
+			<td>{{ publicacion.nombre }}</td>
+			<td>{{ publicacion.agno }}</td>
+			<td>
+			{% for autor in publicacion.autores.all %}
+				<a href="../../../../miembros/{{ autor.pertenece.user.username }}">{{ autor.pertenece.user.last_name }}, {{ autor.pertenece.user.first_name}}</a>{%if not forloop.last %}, {% endif%}
+			{% endfor %}
+			</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+	<tfoot>
+	  <tr><td colspan="3">Fuente: EISULA</td></tr>
+	</tfoot>
+	</table>
+{% else %}
+	<p>Aún no se han agregado publicaciones</p>
+{% endif %}
+{% endblock %}

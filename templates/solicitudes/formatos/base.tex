@@ -1,0 +1,52 @@
+\documentclass [spanish, 12pt, oneside]{letter}
+
+\usepackage [utf8] {inputenc}
+\usepackage {babel}
+\usepackage{enumerate}
+\pagestyle{empty}
+
+\begin{document}
+
+\signature{ \begin{center} {% block firma %}{% endblock %} \end{center} }
+
+\begin{letter}{ {% block destinatarios %}{% endblock %} }
+
+\opening{ {% block apertura %}{% endblock %} }
+
+{% block contenido %}{% endblock %}
+
+{% ifequal numero_motivos 1 %}
+El motivo de esta solicitud es el siguiente: {{ motivos.0 }}.
+{% else %}
+Los motivos de esta solicitud se enumeran a continuación:
+\begin{enumerate}
+{% for m in motivos %}
+\item {{ m }}.
+{% endfor %}
+\end{enumerate}
+{% endifequal %}
+
+\closing{ {% block cierre %}{% endblock %} }
+
+{% if regimen %}
+\encl{
+\begin{enumerate}
+  \item Flujograma de notas.
+  \item Constancia de notas.
+  \item Plan de actividades y evaluación.
+\end{enumerate}
+}
+{% else %}
+\encl{
+\begin{enumerate}
+  \item Flujograma de notas.
+  \item Constancia de notas.
+\end{enumerate}
+}
+{% endif %}
+
+\ps{\begin{flushright}\small{EISULA{{id}}}\end{flushright}}
+
+\end{letter}
+
+\end{document}

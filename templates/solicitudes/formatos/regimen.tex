@@ -1,0 +1,26 @@
+{% extends 'solicitudes/formatos/base.tex' %}
+
+{% block firma%}
+Br. {{ nombre_estudiante }} \\ C.I. {{ cedula_estudiante }}
+{% endblock %}
+{% block destinatarios%}
+Profesor{{ letra_prof }} {{ nombre_jefe }}, Jef{{ letra_jefe }}. \\ 
+Miembros del Consejo de Departamento de \\
+{{ departamento }} de la Escuela de Sistemas.
+{% endblock %}
+{% block apertura %}
+Estimados profesores.
+{% endblock%}
+{% block contenido %}
+Me permito dirigirme a ustedes con el fin de solicitar que se me permita
+cursar la asignatura {{ materia }} en \textbf{regimen especial} para
+el semestre {{ semestre }}.
+{{ titulo }} que me guiará durante el regimen especial es
+{{ profesor }}, y lo hará siguiendo los planes de actividades y
+evaluación anexos a la presente.
+{% endblock %}
+Sin otro partícular a que hacer referencia, se despide de
+ustedes,
+{% block cierre %}
+Atentamente,
+{% endblock %}

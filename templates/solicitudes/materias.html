@@ -1,0 +1,20 @@
+
+<center> Indique todas las materias que desea inscribir el semestre </center>
+<center> para el que solicita el exceso de unidades cr&eacute;dito </center>
+
+<div id = "materias">
+<table align = 'center'>
+
+<tr>
+<td>
+<select name = 'materia1'>
+{% for m in materias %}
+<option value='{{ m.nombre }}'> {{ m.nombre }} </option>
+{% endfor %}
+</select>
+</td> </tr>
+<tr> 
+<td align = 'center'> <input type = "button" value = "A&ntilde;adir otra materia"
+onClick = "nuevaMateria('1')"/> </td> </tr>
+</table>
+</div>

@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es">
+<head>
+	<title>{% block title %} EISULA - {% endblock %}</title>
+{% block head %}
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="content-language" content="es-ve" />
+<link rel="stylesheet" href="/m/css/styles.css" type="text/css" media="screen" />
+<script type="text/javascript" src="/m/js/tabber.js"></script>
+{% endblock %}
+</head>
+<body id="msucol" class="homepage">
+
+<div id="head">
+  <h1><a href="/">Escuela de Ingeniería de Sistemas de la Universidad de
+		  los Andes</a></h1>
+  <p id="topnav">
+  <a href="/departamento/1">Sistemas Computacionales</a>  | 
+  <a href="/departamento/2">Control y Automatización</a> | 
+  <a href="/departamento/3">Investigación de Operaciones</a>  | 
+  <a href="/publicacion/list/page1">Publicaciones</a>  | 
+  <a href="/mapa">Mapa</a> 
+  </p>
+</div> 
+
+  <ul id="mainnav">
+    <li id="miembros"><a href="/miembros/1/">Miembros</a></li>
+    <li id="pensum"><a href="/pensum/">Pensum</a></li>
+    <li id="horarios"><a href="/horarios/">Horarios</a></li>
+    <li id="postgrado"><a href="/pg/">Postgrados</a></li>
+    <li id="noticias"><a href="/noticias/">Noticias</a></li>
+    <li id="solicitudes"><a href="/solicitudes/">Solicitudes</a></li>
+    <li id="faq"><a href="/faq/">FAQ</a></li>
+  </ul>
+
+<div id="home">
+<img id="homeimg" src="/m/imgs/university.jpg" alt="Foto de la
+Universidad de Los Andes" />
+  <div id="homeside">
+    <img src="/m/imgs/university-2.gif" alt="Foto de la Universidad" />
+    <!--<h4 id="headlineabout">Acerca</h4>-->
+    <h4>Acerca</h4>
+    <p>El inicio de los estudios de Matemática en la casa de Estudios
+    Superiores Emeritense... <a href="/acerca">más sobre</a></p>
+  </div>
+</div>
+
+<div id="main">
+	<div id="content">
+		{% block content %}{% endblock %}
+	</div>
+
+	<div id="side">
+        {% block side %}
+	<!--<h4 id="headlineacademic">Descripción</h4>-->
+	<h4>Descripción</h4>
+
+<p>La profesión de Ingeniero de Sistemas tiene por objeto principal de estudio, los sistemas
+considerados en forma global, y
+que persigue estudiar y diseñar dichos sistemas, mediante la aplicación
+del enfoque de sistemas y
+los conceptos, métodos, teorías y técnicas que se derivan de dicho
+enfoque. El fin último que se
+persigue es el de mejorar, en algún sentido, el funcionamiento actual o
+potencial de dichos
+sistemas.</p>
+<p>El Ingeniero de Sistemas es un profesional que desde la perspectiva
+crítica de los enfoques de
+sistemas y haciendo uso de métodos y técnicas para la toma de decisiones
+y el control, está en
+capacidad de actuar en las organizaciones en forma creativa y
+participativa, para seleccionar,
+evaluar y diseñar procesos de toma de decisiones y de control,
+apropiadas a una situación
+particular.</p>
+<p><strong>Título otorgado:</strong> Ingeniero de Sistemas.</p>
+
+				<ul>
+					<li><a href="http://www.ula.ve/">Universidad de Los Andes<a/><li/>
+					<li><a href="http://www.saber.ula.ve/">Saber ULA</a></li>
+					<li><a href="http://cesimo.ing.ula.ve/">CESIMO</a></li>
+					<li><a href="http://www.cecalc.ula.ve">CeCalcULA</a></li>
+					<li><a href="http://www.tach.ula.ve">Universidad de los Andes - Tachira</a></li>	
+					<li><a href="http://webdelprofesor.ula.ve">Web del Profesor</a></li>
+					<li><a href="http://www.lcnw.ing.ula.ve">LCNW</a></li>
+				</ul> 
+        {% endblock %}
+	</div>
+
+	<div id="foot">
+	  <p id="left-foot"><a href="/" title="EISULA">Escuela de Ingeniería de Sistemas</a><br /> 
+	  Nucleo Universitario &ldquo;Pedro Rincon Gutierrez&rdquo;. <br />
+	  La Hechicera, Edificio B, Facultad de Ingeniería. Nivel 2, ala Sur.<br />
+	  Teléfonos: 0274-240.272979 / 2981</p>
+	  <p id="right-foot">
+	  <img src="/m/imgs/logo-is.png" alt="Logo Ingenieria de  Sistemas" />
+	  </p><br class="clear">
+
+  </div>
+</div>
+</body>
+</html>

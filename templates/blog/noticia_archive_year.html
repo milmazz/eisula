@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ block.super }} Noticias para el año {{ year }}
+{% endblock %}
+
+{% block content %}
+<h4>Noticias para el año {{ year }} </h4>
+<p>De acuerdo a su solicitud se han encontrado noticias en los siguientes meses:</p>
+<ul>
+	{% for date in date_list %}
+	<li><a href="{{date|date:"m"}}/" title="Ver las entradas del mes {{ date|date:"F, Y"}}" class="link-month">{{ date|date:"F" }}</a></li>
+	{% endfor %}
+
+</ul>
+{% endblock %}

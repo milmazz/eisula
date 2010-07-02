@@ -1,0 +1,40 @@
+{% extends 'solicitudes/formatos/base.tex' %}
+
+{% block firma%}
+Br. {{ nombre_estudiante }} \\ C.I. {{ cedula_estudiante }}
+{% endblock %}
+{% block destinatarios%}
+Profesor{{letra}} {{ nombre_director }}, Director{{letra}}. \\ 
+Miembros del Consejo de Escuela de Sistemas.
+{% endblock %}
+{% block apertura %}
+Estimados profesores.
+{% endblock%}
+{% block contenido %}
+Me permito dirigirme a ustedes con el fin de solicitarles
+\textbf{ exceso de {{ exceso }} }
+{% ifequal exceso '1' %} \textbf{unidad crédito},
+{% else %} \textbf{unidades crédito},
+{% endifequal %} para el semestre {{ semestre }}. Las asignaturas
+que deseo cursar en dicho semestre son las siguientes:
+
+\begin{center}
+\begin{tabular}[t]{|l|l|}
+\hline
+Asignatura & Unidades crédito \\
+\hline
+{% for m in materias %}
+{{ m.nombre }} & {{ m.creditos }} \\
+\hline
+{% endfor %}
+Total de unidades crédito & {{ total }} \\
+\hline
+\end{tabular}
+\end{center}
+
+{% endblock %}
+Sin otro partícular al que hacer referencia, se despide de
+ustedes,
+{% block cierre %}
+Atentamente,
+{% endblock %}

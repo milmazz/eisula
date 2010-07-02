@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %} {{ block.super }} Publicación {% endblock %}
+
+{% block content %}
+<h4>Publicaciones</h4>
+<dl>
+<dt>Titulo</dt>
+<dd>{{ object.nombre }}</dd>
+<dt>Autores</dt>
+<dd>{% for autor in object.autores.all %}
+<a href="../../../miembros/{{ autor.pertenece.user.username }}" title="Detalles autor" hreflang="es">{{ autor.pertenece.user.last_name|title|escape}}, {{ autor.pertenece.user.first_name|title|escape }}</a> {% if not forloop.last %}; {% endif %}
+{% endfor %}</dd>
+<dt>Año de publicación</dt>
+<dd>{{ object.agno }}</dd>
+<dt>Lugar</dt>
+<dd>{{ object.lugar }}</dd>
+<dt>Resumen</dt>
+<dd>{% if resumen %}
+{{ resumen }}
+{% else %}
+Resumen no dispobible
+{% endif %}</dd>
+</dl>
+{% endblock %}

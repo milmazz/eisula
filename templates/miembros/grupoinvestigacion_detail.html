@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %} 
+	{{ block.super }} Detalle - {{ object.nombre }} 
+{% endblock %}
+
+
+{% block content %}
+	<h3>{{ object.nombre|title|escape }}</h3>
+<table>
+	<tr>
+		<td>Responsable:</td><td>{{ object.responsable.user.last_name|title|escape }}, {{ object.responsable.user.first_name|title|escape }}</td>
+	</tr>
+	<tr>
+		<td>Teléfono:</td><td>{{ object.telef }}</td>
+	</tr>
+	<tr>
+		<td>Dirección:</td><td>{{ object.direccion|capfirst|escape }}</td>
+	</tr>
+	{% if web %}
+	<tr>
+		<td>web:</td><td>{{ object.web }}</td>
+	</tr>
+	{% endif %}
+	<tr>
+		<td>Descripción:</td><td>{{ object.descripcion }}</td>
+	</tr>
+</table>
+	{% if object.miembros %}
+	<a href="../{{ object.id }}/miembros">Ver miembros</a>
+	{% endif %}
+{% endblock %}

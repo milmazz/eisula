@@ -1,0 +1,29 @@
+<fieldset>
+<legend> {% block legend %}{% endblock %} </legend>
+<form action = '{% block action %}{% endblock %}' method = 'POST'>
+
+{% include 'solicitudes/javascript/motivos.js' %}
+{% include 'solicitudes/javascript/validar.js' %}
+
+<table align = 'center'>
+
+{% include 'solicitudes/estudiante.html' %}
+
+{% block form%}
+{% endblock %}
+
+</table>
+
+{% block another %}{% endblock %}
+
+<hr/>
+
+{% include 'solicitudes/motivos.html' %}
+
+<center>
+<input type = 'submit' value = 'Generar oficio'
+onClick = 'return validar("{% block formulario %}{% endblock %}")'/>
+</center>
+
+</form>
+</fieldset>

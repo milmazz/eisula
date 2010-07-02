@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ block.super }} Noticias para el día {{ day|date:"j \de F, Y" }}
+{% endblock %}
+
+{% block content %}
+<h4>Noticias para el día {{ day|date:"j \de F, Y" }}</h4>
+<ul>
+{% for object in object_list %}
+<li><a href="{{ object.get_absolute_url }}" title="Vea la noticia: {{ object.titulo|escape }}" rel="help" hreflang="es">{{ object.titulo|escape }}</a> (#comentarios)</li>
+{% endfor %}
+</ul>
+{% endblock %}

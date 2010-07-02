@@ -1,0 +1,27 @@
+{% extends 'solicitudes/form_base.html' %}
+{% block legend %} Datos de solicitud - Exceso de Unidades 
+Cr&eacute;dito {% endblock %}
+{% block action %} /solicitudes/exceso/generar/ {% endblock %}
+
+{% block form%}
+{% include 'solicitudes/javascript/materias.js' %}
+
+<tr> <td align = 'right'> Exceso de cr&eacute;dito </td>
+<td>
+{% include 'solicitudes/javascript/creditos.js' %}
+</td> </tr>
+
+<tr> <td align = 'right'> Semestre de exceso de cr&eacute;ditos </td>
+<td>
+<select name = 'semestre'>
+{% for s in semestres %}
+<option value='{{ s.codigo }}'> {{ s.codigo }} </option>
+{% endfor %}
+</select>
+</td> </tr>
+{% endblock %}
+
+{% block another %}
+<hr/>
+{% include 'solicitudes/materias.html' %}
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h4>Postgrados</h4>
+<form method="post" action="/pg/single_pg/">
+
+<p><strong>Título Obtenido:</strong>
+<select name=pg_id>
+    {% for pg in fetch_pg %}
+       <option value="{{pg.id}}" />{{pg.degree}}
+    {% endfor %}
+</select></p>
+<p><input type="submit" value="Buscar"></p>
+</form>
+{% endblock %}

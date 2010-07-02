@@ -1,0 +1,29 @@
+{% extends 'solicitudes/formatos/base.tex' %}
+
+{% block firma%}
+Br. {{ nombre_estudiante }} \\ C.I. {{ cedula_estudiante }}
+{% endblock %}
+{% block destinatarios%}
+Profesor{{ letra_prof }} {{ nombre_jefe }}, Jef{{ letra_jefe }}. \\ 
+Miembros del Consejo de Departamento de \\
+{{ departamento }} de la Escuela de Sistemas.
+{% endblock %}
+{% block apertura %}
+Estimados profesores.
+{% endblock%}
+{% block contenido %}
+Me permito dirigirme a ustedes con el fin de solicitarles 
+\textbf{prórroga} de la asignatura Proyecto de Grado
+para el semestre {{ semestre }}. El proyecto que estoy llevando
+a cabo para dicha asignatura lleva por título ``{{ titulo_proyecto }}``,
+siendo tutoriado por el Prof. {{ nombre_tutor }}, adscrito al departamento
+{{ dep_tutor }}, con un avance del {{ porcentaje }} \%.
+\\
+Fecha de presentación de avance: {{ dia }} de {{ mes }}
+de {{ year }}.
+{% endblock %}
+Sin otro partícular a que hacer referencia, se despide de
+ustedes,
+{% block cierre %}
+Atentamente,
+{% endblock %}

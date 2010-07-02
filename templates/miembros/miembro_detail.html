@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %} 
+	{{ block.super }} Detalle - {{ username }} 
+{% endblock %}
+
+
+{% block content %}
+   <h4>Detalles de {{ username|escape }}</h4>
+   <dl>
+     <dt>Nombres:</dt>
+     <dd>{{ first_name|capfirst|escape }}</dd>
+     <dt>Apellidos:</dt>
+     <dd>{{ last_name|capfirst|escape }}</dd>
+     <dt>Correo-e:</dt>
+     <dd>{{ email }}</dd>
+     <dt>Sexo:</dt>
+     <dd>{{ sexo }}</dd>
+	{% if web %}
+		<dt>web:</dt><dd>{{ web }}</dd>
+	{% endif %}
+	{% if nacionalidad %}
+		<dt>Nacionalidad:</dt><dd>{{ nacionalidad|escape }}</dd>
+	{% endif %}
+	{% if categoria %}
+		<dt>Categoría:</dt>
+		<dd>{{ categoria|capfirst|escape}}</dd>
+	{% endif %}
+	{% if resumen %}
+		<dt>Resumen Curricular:</dt>
+		<dd>{{ resumen|escape }}</dd>
+	{% endif %}
+	{% if titulos %}
+		<dt>Titulos:</dt>	
+		{% for titulo in titulos  %}
+			<dd>{{ titulo.grado|capfirst|escape }}</dd>
+		{% endfor %}
+	{% endif %}
+	{% if publicaciones %}
+		<dt>Publicaciones:</dt>
+			{%for publicacion in publicaciones %}
+				<dd><a href="../../publicacion/{{ publicacion.id }}">{{ publicacion.nombre|capfirst|escape }}</a></dd>
+			{% endfor %}
+	{% endif %}
+	{% if departamento %}
+		<dt>Departamento:</dt>
+		<dd><a href="/departamento/{{ departamento.id }}">{{ departamento|capfirst|escape }}</a></dd>
+	{% endif %}
+	{% if grupos %}
+		<dt>Grupos de Investigación:</dt>
+		{% for grupo in grupos %}
+			<dd><a href="/grupo/{{ grupo.id }}">{{ grupo.nombre|capfirst|escape }}</a></dd>
+		{% endfor %}
+	{% endif %}
+{% endblock %}

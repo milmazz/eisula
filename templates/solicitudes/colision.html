@@ -1,0 +1,44 @@
+{% extends 'solicitudes/form_base.html' %}
+{% block legend %} Datos de solicitud - Colisi&oacute;n
+de Horarios {% endblock %}
+{% block action %} /solicitudes/colision/generar/ {% endblock %}
+
+{% block form %}
+<tr>
+<td align = 'right'> Semestre de colisi&oacute;n </td>
+<td>
+<select name = 'semestre'>
+{% for s in semestres %}
+<option value='{{ s.codigo }}'> {{ s.codigo }} </option>
+{% endfor %}
+</select>
+</td>
+</tr>
+
+<tr>
+<td align = 'right'> Número de horas en colisi&oacute;n </td>
+<td> {% include 'solicitudes/javascript/horas.js' %} </td> 
+</tr>
+
+<tr>
+<td align = 'right'> Primera Materia </td>
+<td>
+<select name = 'materia1'>
+{% for m in materias %}
+<option value='{{ m.nombre }}'> {{ m.nombre }} </option>
+{% endfor %}
+</select>
+</td>
+</tr>
+
+<tr>
+<td align = 'right'> Segunda Materia </td>
+<td>
+<select name = 'materia2'>
+{% for m in materias %}
+<option value='{{ m.nombre }}'> {{ m.nombre }} </option>
+{% endfor %}
+</select>
+</td>
+</tr>
+{% endblock %}

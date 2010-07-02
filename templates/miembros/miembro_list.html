@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %} {{ block.super }} Miembros {% endblock %}
+
+{% block content %}
+<h4>Miembros</h4>
+{% if object_list %}
+	<table class="horarios" summary="lista de miembros" cellspacing="0">
+	<thead>
+		<tr>
+			<th>Usuario</th>
+			<th>Nombre</th>
+			<th>Apellidos</th>
+			<th>Correo</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for miembro in object_list %}
+		<tr class="{% cycle odd,even %}">
+			<td><a href="../../../miembros/{{ miembro.user.username }}" title="Detalles miembro" hreflang="es">{{ miembro.user.username }}</a></td>
+			<td>{{ miembro.user.first_name|capfirst|escape}}</td>
+			<td>{{ miembro.user.last_name|capfirst|escape}}</td>
+			<td>{{ miembro.user.email }}</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+	<tfoot>
+	<tr><td colspan="4">Fuente: EISULA</td></tr>
+	</tfoot>
+	</table>
+{% else %}
+	<p>Aún no se han agregado miembros</p>
+{% endif %}
+{% endblock %}

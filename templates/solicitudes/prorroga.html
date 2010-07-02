@@ -1,0 +1,48 @@
+{% extends 'solicitudes/form_base.html' %}
+{% block legend %} Datos de solicitud - Pr&oacute;rroga
+de Proyecto de Grado {% endblock %}
+{% block action %} /solicitudes/prorroga/generar/ {% endblock %}
+
+{% block form %}
+<tr> <td align = 'right'> Nombre del Tutor </td>
+<td> <input type = 'text' name = 'tutor'/> </td> </tr>
+
+<tr> <td align = 'right'> Departamento del Tutor </td>
+<td>
+<select name = 'dep_tutor'>
+{% for d in departamentos %}
+<option value='{{ d.nombre }}'> {{ d.nombre }} </option>
+{% endfor %}
+</select>
+</td> </tr>
+
+<tr> <td align = 'right'> T&iacute;tulo del Proyecto </td>
+<td> <input type = 'text' name = 'titulo' size = '50'/> </td> </tr>
+
+<tr> <td align = 'right'> Semestre de inscripci&oacute;n del proyecto </td>
+<td>
+<select name = 'semestre'>
+{% for s in semestres %}
+<option value='{{ s.codigo }}'> {{ s.codigo }} </option>
+{% endfor %}
+</select>
+</td> </tr>
+
+<tr> <td align = 'right'> Departamento del Proyecto </td>
+<td>
+<select name = 'departamento'>
+{% for d in departamentos %}
+<option value='{{ d.nombre }}'> {{ d.nombre }} </option>
+{% endfor %}
+</select>
+</td> </tr>
+
+<tr> <td align = 'right'> Porcentaje de avance </td>
+<td> {% include 'solicitudes/javascript/porcentaje.js' %} </td> </tr>
+
+<tr> <td align = 'right'> Fecha de presentacion de avance </td>
+<td> {% include 'solicitudes/javascript/fecha.js' %} </td> </tr>
+
+{% endblock %}
+
+{% block formulario %}prorroga{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'solicitudes/formatos/base.tex' %}
+
+{% block firma%}
+Br. {{ nombre_estudiante }} \\ C.I. {{ cedula_estudiante }}
+{% endblock %}
+{% block destinatarios%}
+Profesor{{letra}} {{ nombre_director }}, Director{{letra}}. \\ 
+Miembros del Consejo de Escuela de Sistemas.
+{% endblock %}
+{% block apertura %}
+Estimados profesores.
+{% endblock%}
+{% block contenido %}
+Me permito dirigirme a ustedes con el fin de solicitarles la 
+\textbf{colisión de horarios} entre las asignaturas
+{{ materia1 }} y {{ materia2 }}
+para el semestre {{ semestre }}. El número de horas en
+colisión para dichas materias es de {{ horas }}.
+{% endblock %}
+Sin otro partícular a que hacer referencia, se despide de
+ustedes,
+{% block cierre %}
+Atentamente,
+{% endblock %}

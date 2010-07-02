@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h4>Comentario publicado</h4>
+<p>Su comentario se ha publicado correctamente</p>
+
+<p>Gracias por su contribución.</p>
+
+{% if object %}
+	<ul>
+		<li><a href="{{ object.get_absolute_url }}">Vea su comentario</a></li>
+	</ul>
+{% endif %}
+{% endblock %}
