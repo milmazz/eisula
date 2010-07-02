@@ -104,3 +104,4 @@ INSTALLED_APPS = (
 #    'eisula.pg',
 #    'eisula.solicitudes',
 )
+STATIC_DOC_ROOT= os.path.join(DIRNAME, 'media')
