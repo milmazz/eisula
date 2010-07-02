@@ -1,8 +1,8 @@
 from django.conf.urls.defaults import *
-from django.conf import settings
-from django.views.static import server
-
 from django.contrib import admin
+#from django.conf import settings
+#from django.views.static import server
+
 admin.autodiscover()
 
 urlpatterns = patterns('',
@@ -17,8 +17,8 @@ urlpatterns = patterns('',
     #(r'^solicitudes/', include('eisula.solicitudes.urls')),
     #(r'^horarios/', include('eisula.horariosMaterias.urls')),
     #(r'^comments/', include('django.contrib.comments.urls.comments')),
-    #(r'^admin/doc/', include('django.contrib.admindocs.urls')),
-    (r'^admin/', include('admin.site.urls')),
+    (r'^admin/doc/', include('django.contrib.admindocs.urls')),
+    (r'^admin/', include(admin.site.urls)),
 )
 
 #Servir ficheros estaticos
