@@ -1,7 +1,6 @@
 from django.conf.urls.defaults import *
 from django.contrib import admin
-#from django.conf import settings
-#from django.views.static import server
+from eisula import settings
 
 admin.autodiscover()
 
@@ -22,8 +21,8 @@ urlpatterns = patterns('',
 )
 
 #Servir ficheros estaticos
-#if settings.DEBUG:
-#	urlpatterns +=('',
-#			(r'^m/(?P<path>.*)$', server, {'document_root' :
-#				'/path/absoluto/a/media'})
-#			)
+if settings.DEBUG:
+	urlpatterns += patterns('',
+			(r'^m/(?P<path>.*)$', 'django.views.static.serve', {'document_root' :
+				settings.STATIC_DOC_ROOT})
+			)
