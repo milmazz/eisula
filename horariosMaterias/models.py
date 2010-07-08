@@ -5,22 +5,6 @@ from eisula.pensum.models import Asignatura
 from eisula.solicitudes.models import Semestre
 from eisula.miembros.models import Miembro
 
-class Seccion(models.Model):
-    asignatura = models.ForeignKey(Asignatura)
-    semActual = models.ForeignKey(Semestre)
-    seccion = models.CharField(maxlength=1)
-    profesor = models.ForeignKey(Miembro)
-	
-    def __str__(self):
-        return self.seccion
-
-    class Admin:
-        list_display = ('asignatura','seccion')
-
-    class Meta:
-        verbose_name_plural = 'Secciones'
-
-
 DIAS_SEMANA_CHOICES =(
     ('L','Lunes'),  
     ('M','Martes'),
@@ -31,20 +15,30 @@ DIAS_SEMANA_CHOICES =(
     ('D','Domingo')
 )
 
+
+class Seccion(models.Model):
+    asignatura = models.ForeignKey(Asignatura)
+    semActual = models.ForeignKey(Semestre)
+    seccion = models.CharField(max_length=1)
+    profesor = models.ForeignKey(Miembro)
+	
+    def __unicode__(self):
+        return self.seccion
+
+    class Meta:
+        verbose_name_plural = 'Secciones'
+
+
 class Clase(models.Model):
     asignatura = models.ForeignKey(Asignatura)
     seccion = models.ForeignKey(Seccion)
     semActual = models.ForeignKey(Semestre)
     profesor = models.ForeignKey(Miembro)
-    dia = models.CharField(maxlength=1, choices=DIAS_SEMANA_CHOICES)
+    dia = models.CharField(max_length=1, choices=DIAS_SEMANA_CHOICES)
     #horaIni = models.IntegerField(verbose_name='hora inicio')
-    horaIni = models.CharField(maxlength=5, help_text="Formato: HH:MM",verbose_name='hora inicio')
+    horaIni = models.CharField(max_length=5, help_text="Formato: HH:MM",verbose_name='hora inicio')
     #horaFin = models.IntegerField(verbose_name='hora fin')
-    horaFin = models.CharField(maxlength=5, help_text="Formato: HH:MM",verbose_name='hora fin')
+    horaFin = models.CharField(max_length=5, help_text="Formato: HH:MM",verbose_name='hora fin')
 
-    def __str__(self):
+    def __unicode__(self):
         return self.dia
-
-    class Admin:
-        list_display = ('asignatura','seccion','dia','horaIni', 'horaFin')
-

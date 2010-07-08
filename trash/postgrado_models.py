@@ -15,5 +15,5 @@ class postgrado(models.Model):
 		
 		#El Descriptor principal del modelo es el titulo
 		#asi evitamos el valor por omision (id en la BD)
-		def __str__(self):
+		def __unicode__(self):
 			return self.degree

@@ -27,5 +27,5 @@ class subject(models.Model):
 	#ser prelada por muchas otras materias
 	prelacion = models.ManyToManyField('self',related_name='mat_prelacion')
 	
-	def __str__(self):
+	def __unicode__(self):
 		return self.name

@@ -11,7 +11,7 @@
 {% endblock %}
 
 {% block content %}
-{% load comments.comments %}
+{% load comments %}
 <h4>{{ object.titulo|escape }}</h4>
 {% if object.sub_titulo %}<h5 id="article-subtitle">{{ object.sub_titulo|escape }}</h5>{% endif %}
 
@@ -33,18 +33,17 @@
 	</dd>
 </dl>
 
-{% get_free_comment_count for blog.noticia object.id as comment_count %}
+{% get_comment_count for blog.noticia object.id as comment_count %}
 {% if comment_count %}
 <p>Esta noticia cuenta hasta ahora con <a href="{{ object.get_absolute_url }}#comments">{{ comment_count }} comentario{{ comment_count|pluralize }}</a></p>
 {% else %}
 <p>Esta entrada aún no tiene comentarios, sea el primero en participar.</p>
 {% endif %}
 
-{% get_free_comment_list for blog.noticia object.id as comment_list %}
+{% get_comment_list for blog.noticia object.id as comment_list %}
 
 {% if comment_list %}
 <h4 id="comments">Comentarios</h4>
-{% endif %}
 {% for comment in comment_list %}
 	<div class="comment_{% cycle odd,even %}" id="c{{ comment.id }}">
 		<span class="comnum"><a id="c{{ comment.id }}" href="#c{{ comment.id }}">#{{ forloop.counter }}</a></span>
@@ -53,7 +52,8 @@
 		{{ comment.comment|escape|urlizetrunc:40|linebreaks }}
 	</div>
 {% endfor %}
+{% endif %}
 
 <h4 class="comments-title">Haz tu comentario</h4>
-{% free_comment_form for blog.noticia object.id %}
+{% get_comment_form for blog.noticia object.id %}
 {% endblock %}

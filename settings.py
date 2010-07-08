@@ -96,12 +96,12 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.admindocs',
     'django.contrib.comments',
-#    'eisula.blog',
-#    'eisula.miembros',
+    'eisula.blog',
+    'eisula.miembros',
     'eisula.faq',
-#    'eisula.horariosMaterias',
-#    'eisula.pensum',
-#    'eisula.pg',
-#    'eisula.solicitudes',
+    'eisula.horariosMaterias',
+    'eisula.pensum',
+    'eisula.pg',
+    'eisula.solicitudes',
 )
 STATIC_DOC_ROOT= os.path.join(DIRNAME, 'media')

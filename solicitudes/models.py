@@ -1,14 +1,11 @@
 # -*- coding: latin-1 -*-
 
+from datetime import date
+from os import getcwd
 from django.db import models
-
 from eisula.miembros.models import Miembro
 
-from datetime import date
-
-from os import getcwd
-
-#Lugar en el que se van a guardar los reglamentos
+# Lugar en el que se van a guardar los reglamentos
 path_reglamentos = getcwd() + '/solicitudes/reglamentos/'
 
 estado_solicitud = (
@@ -31,94 +28,64 @@ resultado = (
     ('R', 'Rechazada'),
     )
 
-class Estudiante ( models.Model ) :
-    
-    nombre = models.CharField(maxlength = 32, blank = False)
-    cid = models.CharField(maxlength = 16, unique = True, blank = False,
-                           verbose_name = 'Cédula')
+class Estudiante(models.Model):  
+    nombre = models.CharField(max_length=32, blank=False)
+    cid = models.CharField(max_length=16, unique=True, blank=False,
+                           verbose_name='Cédula')
 
-    def __str__ (self):
-        return self.nombre + ". " + self.cid
-
-    class Admin:
-        list_display = ('nombre', 'cid')
-        list_filter = ['cid']
-        search_fields = ['cid']
+    def __unicode__(self):
+        return u"%s. %s" % (self.nombre, self.cid)
     
-class Solicitud ( models.Model ) :
-    
-    estudiante = models.ForeignKey('Estudiante', blank = False)
-    tipo = models.CharField(maxlength = 16, choices = tipo_solicitud,
-                            blank = False)
-    estado = models.CharField(maxlength = 1, choices = estado_solicitud,
-                              default = estado_solicitud[0][0])
-    fecha = models.DateTimeField(auto_now = True)
+class Solicitud(models.Model):
+    estudiante = models.ForeignKey('Estudiante', blank=False)
+    tipo = models.CharField(max_length=16, choices=tipo_solicitud,
+                            blank=False)
+    estado = models.CharField(max_length=1, choices=estado_solicitud,
+                              default=estado_solicitud[0][0])
+    fecha = models.DateTimeField(auto_now=True)
 
-    def __str__(self):
+    def __unicode__(self):
         try:
             self.id
-            return str(self.id)
-
+            return self.id #str(self.id)
         except NameError:
             return self.estudiante 
 
-    class Admin:
-        list_display = ('id', 'estudiante', 'tipo', 'estado', 'fecha')
-        list_filter = ['estudiante', 'tipo', 'estado']
-
-    class Meta :
+    class Meta:
         verbose_name_plural = 'Solicitudes'
 
-class Decision ( models.Model ) :
-
-    solicitud = models.OneToOneField('Solicitud', blank = False)
-    resultado = models.CharField(maxlength = 1, choices = resultado,
-                                 blank = False)
-    motivos = models.TextField(blank = False)
-
-    class Admin:
-        list_display = ('solicitud', 'resultado')
+class Decision(models.Model):
+    solicitud = models.OneToOneField('Solicitud', blank=False)
+    resultado = models.CharField(max_length=1, choices=resultado,
+                                 blank=False)
+    motivos = models.TextField(blank=False)
 
     class Meta :
         verbose_name_plural = 'Decisiones'
 
-class DirectorEscuela ( models.Model ) :
+class DirectorEscuela(models.Model):
+    quien = models.ForeignKey(Miembro, verbose_name = 'Nombre')
+    inicio_gestion = models.DateField(verbose_name='Inicio gestión')
+    fin_gestion = models.DateField(verbose_name='Fin gestión')
 
-    quien = models.ForeignKey(Miembro, blank = False, verbose_name = 'Nombre')
-    inicio_gestion = models.DateField(blank = False, verbose_name =
-                                      'Inicio gestión')
-    fin_gestion = models.DateField(blank = False, verbose_name =
-                                   'Fin gestión')
-
-    def __str__ (self):
+    def __unicode__ (self):
         return self.quien.user.get_full_name()
-
-    class Admin :
-        list_display = ('quien', 'inicio_gestion', 'fin_gestion')
 
     class Meta :
         verbose_name_plural = 'Directores de escuela'
 
-class Reglamento ( models.Model ) :
-
-    nombre = models.CharField(maxlength = 100, blank = False)
+class Reglamento(models.Model):
+    nombre = models.CharField(max_length=100)
     archivo = models.FileField(upload_to = path_reglamentos)
 
-    def __str__(self):
+    def __unicode__(self):
         return self.nombre
 
-    class Admin :
-        list_display = ('nombre',)
-
-class Semestre ( models.Model ) :
-
-    codigo = models.CharField(maxlength = 6, unique = True, blank = False,
+class Semestre(models.Model):
+    codigo = models.CharField(max_length=6, unique=True,
                               help_text = 'Ej. A-2007')
-    inicio = models.DateField(blank = False)
-    fin = models.DateField(blank = False)
+    inicio = models.DateField()
+    fin = models.DateField()
 
-    def __str__ (self):
+    def __unicode__ (self):
         return self.codigo
-
-    class Admin :
-        list_display = ('codigo', 'inicio', 'fin')

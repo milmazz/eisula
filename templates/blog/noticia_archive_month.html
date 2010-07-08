@@ -5,12 +5,12 @@
 {% endblock %}
 
 {% block content %}
-{% load comments.comments %}
+{% load comments %}
 <h4>Noticias para el mes {{ month|date:"F, Y" }}</h4>
 
 <ul>
 {% for object in object_list %}
-{% get_free_comment_count for blog.noticia object.id as comment_count %}
+{% get_comment_count for blog.noticia object.id as comment_count %}
 <li><a href="{{ object.get_absolute_url }}" title="Vea la entrada: {{ object.titulo|escape }}" rel="" hreflang="es" class="link-article">{{ object.titulo|escape }}</a> 
 {% if comment_count %}
 (<a href="{{ object.get_absolute_url }}#comments" class="link-comments">{{ comment_count }} comentario{{ comment_count|pluralize }}</a>)
