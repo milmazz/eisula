@@ -6,7 +6,7 @@ de la [Universidad de Los Andes][] (EISULA).
 ## Historia ##
 
 Este prototipo nace como un proyecto para la asignatura de *Sistemas
-Computacionales* por allá en el 2007. Sin embargo, un día revisando en mis
+Computacionales* por allá en el año 2007. Sin embargo, un día revisando en mis
 respaldos me encontré este proyecto, uno con los cuales comencé a trabajar en
 [Django][], he decidido retomarlo porque hasta ahora (2010) nuestra ilustre
 escuela aún no cuenta con un portal que sirva como punto de encuentro entre
@@ -25,9 +25,8 @@ Actualmente el proyecto EISULA está siendo reescrito para adaptarse a las
 nuevas versiones del *framework* de desarrollo Web [Django][], además, espero
 ampliar y mejorar las funcionalidades que se ofrecían en el proyecto original.
 Seguramente en esta etapa de *desarrollo* se presenten errores y fallos, es por
-ello que le recomiendo reportar los errores que encuentre a través de:
-
-http://github.com/milmazz/eisula/issues
+ello que le recomiendo reportar los errores que encuentre a través del sistema
+de [issues](http://github.com/milmazz/eisula/issues).
 
 ## Modo Desarrollo ##
 
@@ -119,4 +118,4 @@ Finalmente reinicie el Servidor Web Apache:
     # /etc/init.d/apache2 restart
 
 [Django]: http://djangoproject.com
-[Universidad de Los Andes]: http://ula.ve
+[Universidad de Los Andes]: http://www.ula.ve
