@@ -1,5 +1,4 @@
 from django.db import models
-#from django.contrib.auth.models import User
 from eisula.miembros.models import Miembro
 
 class Categoria(models.Model):
@@ -11,14 +10,13 @@ class Categoria(models.Model):
 		return self.nombre
 	
 	def get_absolute_url(self):
-		return '/noticias/categorias/%s' % (self.slug)
+		return '/noticias/categorias/%s/' % (self.slug)
 
 
 class Noticia(models.Model):
 	titulo = models.CharField(max_length=64)
 	sub_titulo = models.CharField(max_length=32, blank=True)
 	slug = models.SlugField(unique_for_date='fecha_pub')
-	#autor = models.ForeignKey(User)
 	autor = models.ForeignKey(Miembro)
 	contenido = models.TextField()
 	fecha_pub = models.DateTimeField('fecha de publicacion')
@@ -36,7 +34,7 @@ class Noticia(models.Model):
 		return self.titulo
 
 	def get_absolute_url(self):
-		return "/noticias/%s/%s" % (
+		return "/noticias/%s/%s/" % (
 				self.fecha_pub.strftime("%Y/%m/%d"), 
 				self.slug
 				)
