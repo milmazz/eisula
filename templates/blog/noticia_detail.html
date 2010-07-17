@@ -55,5 +55,5 @@
 {% endif %}
 
 <h4 class="comments-title">Haz tu comentario</h4>
-{% get_comment_form for blog.noticia object.id %}
+{% render_comment_form for object %}
 {% endblock %}
